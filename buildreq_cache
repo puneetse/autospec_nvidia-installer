@@ -1,0 +1,4 @@
+430.14
+mesa-dev
+pkgconfig(gl)
+pkgconfig(ncursesw)

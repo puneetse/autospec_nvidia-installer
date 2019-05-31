@@ -1,0 +1,43 @@
+From c022f95913838a0c5b45b27a00dec602c8bf6796 Mon Sep 17 00:00:00 2001
+From: puneetse <22071208+puneetse@users.noreply.github.com>
+Date: Fri, 31 May 2019 04:38:22 -0700
+Subject: [PATCH] set default values to install under /opt
+
+---
+ nvidia-installer.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/nvidia-installer.c b/nvidia-installer.c
+index 2a0255f..84bb863 100644
+--- a/nvidia-installer.c
++++ b/nvidia-installer.c
+@@ -147,6 +147,26 @@ static Options *load_default_options(void)
+     op->external_platform_json_path = DEFAULT_EGL_EXTERNAL_PLATFORM_JSON_PATH;
+     op->skip_depmod = FALSE;
+ 
++    /* Clear Linux OS defaults to install under /opt */
++    op->no_precompiled_interface = TRUE;
++    op->no_questions = TRUE;
++    op->x_prefix = "/opt/nvidia";
++    op->x_module_path = "/opt/nvidia/lib64/xorg/modules";
++    op->x_library_path = "/opt/nvidia/lib64";
++    op->x_sysconfig_path = "/etc/X11/xorg.conf.d";
++    op->opengl_prefix = "/opt/nvidia";
++    op->compat32_prefix = "/opt/nvidia";
++    op->compat32_libdir = "lib32";
++    op->documentation_prefix = "/opt/nvidia";
++    op->application_profile_path = "/etc/nvidia";
++    op->utility_prefix = "/opt/nvidia";
++    op->ui_str = "none";
++    op->run_distro_scripts = TRUE;
++    op->dkms = TRUE;
++    op->install_libglx_indirect = TRUE;
++    op->libglvnd_json_path = "/opt/nvidia/share";
++    op->external_platform_json_path = "/opt/nvidia/share/egl/egl_external_platform.d";
++
+     return op;
+ 
+ } /* load_default_options() */
+-- 
+2.21.0
+
