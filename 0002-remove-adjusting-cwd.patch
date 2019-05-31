@@ -1,0 +1,26 @@
+From 608406c688f44d62d1cfa3f822e1088a5b8e4131 Mon Sep 17 00:00:00 2001
+From: puneetse <22071208+puneetse@users.noreply.github.com>
+Date: Fri, 31 May 2019 06:31:53 -0700
+Subject: [PATCH] remove adjusting cwd
+
+---
+ nvidia-installer.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/nvidia-installer.c b/nvidia-installer.c
+index 84bb863..d9e7d1d 100644
+--- a/nvidia-installer.c
++++ b/nvidia-installer.c
+@@ -595,9 +595,6 @@ int main(int argc, char *argv[])
+     
+     log_init(op, argc, argv);
+ 
+-    /* chdir() to the directory containing the binary */
+-    
+-    if (!adjust_cwd(op, argv[0])) return 1;
+ 
+     /* initialize the user interface */
+     
+-- 
+2.21.0
+

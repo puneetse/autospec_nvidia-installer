@@ -4,7 +4,7 @@
 #
 Name     : nvidia-installer
 Version  : 430.14
-Release  : 2
+Release  : 3
 URL      : https://github.com/NVIDIA/nvidia-installer/archive/430.14.tar.gz
 Source0  : https://github.com/NVIDIA/nvidia-installer/archive/430.14.tar.gz
 Summary  : No detailed summary available
@@ -17,6 +17,7 @@ BuildRequires : mesa-dev
 BuildRequires : pkgconfig(gl)
 BuildRequires : pkgconfig(ncursesw)
 Patch1: 0001-set-default-values-to-install-under-opt.patch
+Patch2: 0002-remove-adjusting-cwd.patch
 
 %description
 nvidia-installer: A tool for installing/un-installing the NVIDIA Linux graphics driver
@@ -40,13 +41,14 @@ man components for the nvidia-installer package.
 %prep
 %setup -q -n nvidia-installer-430.14
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1559302995
+export SOURCE_DATE_EPOCH=1559309601
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -59,7 +61,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1559302995
+export SOURCE_DATE_EPOCH=1559309601
 rm -rf %{buildroot}
 %make_install PREFIX=/usr
 
